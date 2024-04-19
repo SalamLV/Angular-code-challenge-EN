@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ImageService } from './services/image.service';
 import { LicensePlateService } from './services/license-plate.service';
+import { Store } from '@ngrx/store';
+import { State } from './store/plate/plate.reducer';
+import * as PlateActions from './store/plate/plate.actions';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +42,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private imageService: ImageService,
-    private licensePlateService: LicensePlateService
+    private licensePlateService: LicensePlateService,
+    private store: Store<State>
   ) {}
 
   ngOnInit() {
@@ -82,6 +86,8 @@ export class AppComponent implements OnInit {
         'Helaas is het ingevoerde kenteken niet geldig. Probeer het opnieuw.';
       return;
     }
+
     console.log('Kenteken is Ok');
+    this.store.dispatch(PlateActions.savePlate({ data: licensePlate }));
   }
 }
