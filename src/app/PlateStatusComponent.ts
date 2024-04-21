@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { State } from './store/plate/plate.reducer';
-import * as fromPlateSelectors from './store/plate/plate.selectors';
 
 @Component({
   selector: 'app-plate-status',
